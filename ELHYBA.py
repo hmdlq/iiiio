@@ -403,17 +403,17 @@ async def start_msg(app, message):
 
 @app.on_message(filters.text & filters.private)
 async def generator_and_about(app,m):
-    if m.text == "- معلومات البوت":
+    if m.text == "‹ معلومات البوت ›":
       text = ''
       text += "- اللـغـة البرمجية - بايثون "
       text += f"\n- اصـدار بايروجرام {v}"
-      text += f"\n- اصـدار ‹ تيليثون › {v2}"
+      text += f"\n- اصـدار تيليثون  {v2}"
       text += f"\n\n- المطور : @IIIlIIv"
       await m.reply(text, quote=True)
 
     if m.text == "‹ بايروجرام ›":
         rep = await m.reply(
-        "**⏳ يـعالـج..**", reply_markup=ReplyKeyboardRemove ()
+        "**يتم بدء عملية الاستخراج**", reply_markup=ReplyKeyboardRemove ()
         ,quote=True)
         c = Client(
           f"pyro{m.from_user.id}",api_id,api_hash,
@@ -422,7 +422,7 @@ async def generator_and_about(app,m):
         await c.connect()
         await rep.delete()
         phone_ask = await m.chat.ask(
-          "⎆ يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة مثــال 📱: \n+963995×××××",
+          "- يرجى ارسال رقم هاتفك مع رمز الدولة مثال :: \n+963995×××××",
           reply_to_message_id=m.id, filters=filters.text
         )
         phone = phone_ask.text
@@ -431,7 +431,7 @@ async def generator_and_about(app,m):
         except PhoneNumberInvalid:
           return await phone_ask.reply("⎆ رقـم الهـاتف الذي أرسلـته غير صالح أعـد استخـراج الجلسـة مـرة أخـرى .\n/start", quote=True)
         except Exception:
-          return await phone_ask.reply("خطأ! ، يرجى المحاولة مرة أخرى لاحقًا 🤠\n/start",quote=True)
+          return await phone_ask.reply("خطأ! ، يرجى المحاولة مرة أخرى لاحقًا\n/start",quote=True)
         hash = send_code.phone_code_hash
         code_ask = await m.chat.ask(
           "⎆ أرسـل الكـود\n إذا جاءك في هـذه الطريقـة '12345' أرسـل بين كـل رقـم فـراغ\nمثـال : ' 1 2 3 4 5' .",filters=filters.text
@@ -452,13 +452,13 @@ async def generator_and_about(app,m):
           await c.sign_in(phone, hash, code)
         except:
           pass
-        rep = await m.reply("**⏳ يـعـالـج ..**", quote=True)
+        rep = await m.reply("**انتظر من فضلك**", quote=True)
         get = await c.get_me()
-        text = '**✅ تم تسجيل الدخول بنجاح\n'
-        text += f'👤 الاسم الأول : {get.first_name}\n'
-        text += f'🆔 الايدي : {get.id}\n'
-        text += f'📞 رقم الهاتف : {phone}\n'
-        text += f'🔒 تم حفظ الجلسة في الرسائل المحفوظة'
+        text = '**- تم تسجيل الدخول بنجاح\n'
+        text += f'- الاسم الأول : {get.first_name}\n'
+        text += f'- الايدي : {get.id}\n'
+        text += f'- رقم الهاتف : {phone}\n'
+        text += f'- تم حفظ الجلسة في الرسائل المحفوظة'
         string_session = await c.export_session_string()
         await rep.delete()
         await c.send_message('me', f'تم استخراج جلسة بايروجرام {v2} هذه الجلسة\n\n`{string_session}`')
@@ -479,7 +479,7 @@ async def generator_and_about(app,m):
         c = TelegramClient(StringSession(), api_id, api_hash)
         await c.connect()
         await rep.delete()
-        phone_ask = await m.chat.ask( "⎆ يـرجـى إرسـال رقـم هاتفـك مـع رمـز الدولة مثــال 📱: \n+963995××××× ",
+        phone_ask = await m.chat.ask( "- يرجى ارسال رقم هاتفك مع رمز الدولة مثال :: \n+964995××××× ",
           reply_to_message_id=m.id, filters=filters.text
         )
         phone = phone_ask.text
@@ -488,7 +488,7 @@ async def generator_and_about(app,m):
         except PhoneNumberInvalidError:
           return await phone_ask.reply("⎆ رقـم الهـاتف الذي أرسلـته غير صالح أعـد استخـراج الجلسـة مـرة أخـرى .\n/start", quote=True)
         except Exception:
-          return await phone_ask.reply("خطأ! ، يرجى المحاولة مرة أخرى لاحقًا 🤠\n/start",quote=True)
+          return await phone_ask.reply("خطأ! ، يرجى المحاولة مرة أخرى لاحقًا \n/start",quote=True)
         code_ask = await m.chat.ask("*⎆ أرسـل الكـود\n إذا جاءك في هـذه الطريقـة '12345' أرسـل بين كـل رقـم فـراغ\nمثـال : ' 1 2 3 4 5' .",filters=filters.text)
         code = code_ask.text.replace(" ","")
         try:
